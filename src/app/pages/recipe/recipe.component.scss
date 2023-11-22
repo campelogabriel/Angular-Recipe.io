@@ -1,0 +1,74 @@
+.recipe {
+  padding: 4rem 0;
+  display: flex;
+  justify-content: space-around;
+  // gap: 2.4rem;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    flex: 2;
+
+    &--img {
+      width: 420px;
+      border-radius: 12px;
+      align-self: center;
+    }
+
+    &--info {
+      align-self: center;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      gap: 2.4rem;
+      padding: 0 1.2rem;
+      border-left: 1px solid #222;
+      border-right: 1px solid #222;
+
+      .rating {
+        color: #222;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+
+        span {
+          color: #fc4f08;
+        }
+      }
+
+      .favorite {
+        background-color: transparent;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.2rem;
+        padding: 0.4rem 0.8rem;
+        outline: none;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease-in-out;
+        font-size: 1.4rem;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.1);
+          // background-color: rgb(255, 225, 186);
+          // color: #222;
+        }
+
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+
+  .ingredients {
+    display: flex;
+    gap: 2.4rem;
+    flex: 3;
+  }
+}

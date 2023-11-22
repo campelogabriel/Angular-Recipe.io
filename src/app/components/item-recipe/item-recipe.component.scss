@@ -1,0 +1,45 @@
+.container__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+
+  &--img {
+    overflow: hidden;
+
+    img {
+      transition: all 0.4s;
+    }
+
+    img:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  a {
+    &:link,
+    &:visited {
+      text-decoration: none;
+
+      p {
+        font-size: 1rem;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-weight: 500;
+        margin: 0.8rem 0;
+      }
+
+      h5 {
+        font-size: 1.6rem;
+        margin: 0.8rem 0;
+        color: #111;
+      }
+    }
+
+    &:active,
+    &:hover {
+      color: #9326;
+    }
+  }
+}

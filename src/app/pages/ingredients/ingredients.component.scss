@@ -1,0 +1,39 @@
+.container__ingredients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+  padding: 4rem 0;
+
+  &--recipes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    column-gap: 2.4rem;
+    row-gap: 8rem;
+    min-width: 100%;
+  }
+
+  &--input {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    form {
+      min-width: 100%;
+    }
+
+    input {
+      min-width: 100%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 0.6rem;
+      outline: none;
+
+      &:focus {
+        color: #222;
+        border-color: #ff9c76;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+  <div class="choose">
+    <a (click)="setLogin()">Login</a>
+    |
+    <a (click)="setSignup()">Signup</a>
+  </div>
+
+  <ng-content select="signup"></ng-content>
+
+  <div class="btn">
+    <button class="submit" [disabled]="!formLogin.valid" type="submit">
+      Submit
+    </button>
+    <button class="back"><a routerLink="/">Voltar</a></button>
+  </div>
+</form>

@@ -1,0 +1,34 @@
+<div class="recipe">
+  <div class="recipe__main">
+    <img
+      class="recipe__main--img"
+      src="https://images.spoonacular.com/file/wximages/419357-312x231.png"
+    />
+    <div class="recipe__main--info">
+      <p class="rating">Servings: <span>2</span></p>
+
+      <img *ngIf="isLoading" src="../../../assets/spinner.svg" alt="" />
+
+      <button *ngIf="!isLoading" (click)="isFavorite()" class="favorite">
+        <p>Favorite</p>
+
+        <img *ngIf="!favorite" src="../../../assets/heartEmpty.png" />
+        <img *ngIf="favorite" src="../../../assets/heartFilled.png" />
+      </button>
+    </div>
+  </div>
+  <div class="ingredients">
+    <div class="ingredients__sub">
+      <h3>Cheese</h3>
+      <p>Amount 2</p>
+    </div>
+    <div class="ingredients__sub">
+      <h3>Cheese</h3>
+      <p>Amount 2</p>
+    </div>
+    <div class="ingredients__sub">
+      <h3>Cheese</h3>
+      <p>Amount 2</p>
+    </div>
+  </div>
+</div>

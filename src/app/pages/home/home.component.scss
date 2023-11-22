@@ -1,0 +1,18 @@
+.container__list {
+  padding: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  column-gap: 2.4rem;
+  row-gap: 8rem;
+
+  h1 {
+    grid-column: 1/-1;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-style: italic;
+    color: #333;
+  }
+}

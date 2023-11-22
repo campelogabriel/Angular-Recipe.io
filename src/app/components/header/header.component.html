@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="header__main">
+    <img class="header__main--logo" src="assets/Novo.png" alt="Logo Recipe" />
+    <div class="header__main--user" *ngIf="!isLogged">
+      <div class="user--login">
+        <img src="assets/profileIcon.svg" alt="User Profile" />
+        <a routerLink="login">
+          <h3>Log in</h3>
+        </a>
+      </div>
+    </div>
+    <div class="header__main--user" *ngIf="isLogged">
+      <input type="text" placeholder="Search recipes..." />
+      <div class="user--login">
+        <img src="assets/profileIcon.svg" alt="User Profile" />
+        <a routerLink="edit">
+          <h3>{{ name }}</h3>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="header__menu">
+    <ul>
+      <li>
+        <a
+          routerLinkActive="selected"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="/"
+          >Foods</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="selected"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="favorites"
+          >Favorites</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="selected"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="ingredients"
+          >Ingredients</a
+        >
+      </li>
+      <li>
+        <a
+          routerLinkActive="selected"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLink="about"
+          >About me</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

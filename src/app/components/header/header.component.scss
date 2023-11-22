@@ -1,0 +1,90 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  border-bottom: 3px solid #555;
+  padding: 3.2rem 4rem;
+
+  & + div {
+    max-width: 120rem;
+  }
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &--logo {
+      height: 50px;
+      align-self: flex-start;
+    }
+
+    &--user {
+      display: flex;
+      gap: 1.2rem;
+      align-self: center;
+
+      input {
+        border-radius: 6px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        padding: 0.2rem 1.6rem;
+        height: 24px;
+        width: 180px;
+        transition: all 0.4s;
+
+        &:focus {
+          outline: none;
+          width: 240px;
+        }
+      }
+    }
+  }
+
+  &__menu ul {
+    display: flex;
+    gap: 3.2rem;
+    align-items: center;
+    justify-content: center;
+
+    li {
+      list-style: none;
+      font-size: 1.6rem;
+
+      a:link,
+      a:visited {
+        text-decoration: none;
+        color: #222;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: all 0.2s;
+      }
+
+      a:active,
+      a:hover {
+        color: #fc4f08;
+      }
+    }
+  }
+
+  .user--login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+      color: #222;
+    }
+
+    img {
+      width: 20px;
+    }
+  }
+}
+
+.selected {
+  color: #fc4f08 !important;
+}

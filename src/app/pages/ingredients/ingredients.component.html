@@ -1,0 +1,26 @@
+<div class="container__ingredients">
+  <div class="container__ingredients--input">
+    <h1>Type the ingredients that you want to use in your meal</h1>
+    <form [formGroup]="formInput" (ngSubmit)="onSearch()">
+      <input
+        formControlName="ingredients"
+        type="text"
+        placeholder="rice, beans, chicken"
+      />
+    </form>
+  </div>
+
+  <div *ngIf="recipeArr.length > 0" class="container__ingredients--recipes">
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+    <app-item-recipe [id]="1"></app-item-recipe>
+  </div>
+
+  <div *ngIf="isLoading">
+    <img src="../../../assets/spinner.svg" alt="" />
+  </div>
+</div>
