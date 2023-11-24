@@ -9,10 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ItemRecipeComponent } from './components/item-recipe/item-recipe.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
-import { FormLoginComponent } from './components/form-login/form-login.component';
-import { FormSignupComponent } from './components/form-signup/form-signup.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { IngredientsComponent } from './pages/ingredients/ingredients.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,12 +21,16 @@ import { IngredientsComponent } from './pages/ingredients/ingredients.component'
     HomeComponent,
     ItemRecipeComponent,
     RecipeComponent,
-    FormLoginComponent,
-    FormSignupComponent,
     FavoriteComponent,
     IngredientsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

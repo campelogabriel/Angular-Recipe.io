@@ -5,11 +5,54 @@
     <a (click)="setSignup()">Signup</a>
   </div>
 
-  <ng-content select="signup"></ng-content>
+  <ng-container *ngIf="!isLogin">
+    <label for="name">Name</label>
+    <input formControlName="name" name="name" type="text" placeholder="Name" />
+    <!-- <span *ngIf="name.errors?.['minlength']" class="errorMsg"
+      >The name must have at least 4 characters</span
+    > -->
+  </ng-container>
+
+  <label for="email">Email</label>
+  <input
+    required
+    name="email"
+    placeholder="Email"
+    type="email"
+    email
+    formControlName="email"
+  />
+
+  <!-- <span class="errorMsg" *ngIf="email.errors?.['email']"
+    >Please provide a valid email</span
+  > -->
+  <label for="password">Password</label>
+  <input
+    name="password"
+    placeholder="Password"
+    type="password"
+    formControlName="password"
+  />
+
+  <!-- <span *ngIf="password.errors?.['minlength']" class="errorMsg"
+    >The password must have at least 8 characters</span
+  > -->
+
+  <ng-container *ngIf="!isLogin">
+    <label for="confirmPassword">Confirm Password</label>
+    <input
+      name="confirmPassword"
+      type="password"
+      formControlName="confirmPassword"
+    />
+    <!-- <span *ngIf="confirmPassword.errors?.['minlength']" class="errorMsg"
+      >The password must have at least 8 characters</span
+    > -->
+  </ng-container>
 
   <div class="btn">
-    <button class="submit" [disabled]="!formLogin.valid" type="submit">
-      Submit
+    <button [disabled]="formLogin.valid" class="submit" type="submit">
+      {{ isLogin ? "Login" : "Submit" }}
     </button>
     <button class="back"><a routerLink="/">Voltar</a></button>
   </div>
