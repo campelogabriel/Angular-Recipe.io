@@ -1,69 +1,43 @@
-<div class="recipe">
-  <div class="recipe__main">
-    <h4>Name of Recipe</h4>
-    <img
-      class="recipe__main--img"
-      src="https://images.spoonacular.com/file/wximages/419357-312x231.png"
-    />
-    <div class="recipe__main--info">
-      <p class="rating">Servings: <span>2</span></p>
-
-      <img *ngIf="isLoading" src="../../../assets/spinner.svg" alt="" />
-
-      <button *ngIf="!isLoading" (click)="isFavorite()" class="favorite">
-        <p>Favorite</p>
-
-        <img *ngIf="!favorite" src="../../../assets/heartEmpty.png" />
-        <img *ngIf="favorite" src="../../../assets/heartFilled.png" />
-      </button>
-    </div>
-  </div>
-  <div class="ingredients">
-    <div class="ingredients__info">
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-      <div class="ingredients__sub">
-        <h3>Cheese</h3>
-        <p>Amount: 2 Tspeps</p>
-      </div>
-    </div>
-    <div class="ingredients__time">
-      <img src="../../../assets/clock.svg" alt="" />
-      <span>Tempo de preparo: 45 mins</span>
-    </div>
+<div *ngIf="isLoading; else recipe">
+  <div class="spinner" *ngIf="isLoading">
+    <img src="../../../assets/spinner.svg" />
   </div>
 </div>
+
+<ng-template #recipe>
+  <div class="recipe">
+    <div class="recipe__main">
+      <h4>{{ recipeObj.title }}</h4>
+      <img class="recipe__main--img" src="{{ recipeObj.image }}" />
+      <div class="recipe__main--info">
+        <p class="rating">
+          Servings: <span>{{ recipeObj.servings }}</span>
+        </p>
+
+        <img *ngIf="isLoading" src="../../../assets/spinner.svg" alt="" />
+
+        <button *ngIf="!isLoading" (click)="isFavorite()" class="favorite">
+          <p>Favorite</p>
+
+          <img *ngIf="!favorite" src="../../../assets/heartEmpty.png" />
+          <img *ngIf="favorite" src="../../../assets/heartFilled.png" />
+        </button>
+      </div>
+    </div>
+    <div class="ingredients">
+      <div class="ingredients__info">
+        <div
+          class="ingredients__sub"
+          *ngFor="let ing of recipeObj.extendedIngredients"
+        >
+          <h3>{{ ing.name }}</h3>
+          <p>Amount: {{ ing.amount }} {{ ing.unit }}</p>
+        </div>
+      </div>
+      <div class="ingredients__time">
+        <img src="../../../assets/clock.svg" alt="" />
+        <span>Prep Time: {{ recipeObj.readyInMinutes }} mins</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

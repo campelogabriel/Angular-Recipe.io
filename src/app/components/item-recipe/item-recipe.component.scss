@@ -3,12 +3,14 @@
   flex-direction: column;
   gap: 1.2rem;
   font-family: "Montserrat", sans-serif;
+  justify-self: center;
 
   &--img {
     overflow: hidden;
 
     img {
       transition: all 0.4s;
+      width: 200px;
     }
 
     img:hover {

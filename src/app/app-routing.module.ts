@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { IngredientsComponent } from './pages/ingredients/ingredients.component';
+import { authorizationGuard } from './guards/authorization.guard';
 
 const routes: Routes = [
   {
@@ -28,17 +29,18 @@ const routes: Routes = [
     path: 'favorites',
     component: FavoriteComponent,
     pathMatch: 'full',
+    canActivate: [authorizationGuard],
   },
   {
     path: 'ingredients',
     component: IngredientsComponent,
     pathMatch: 'full',
   },
-  {
-    path: 'about',
-    component: RecipeComponent,
-    pathMatch: 'full',
-  },
+  // {
+  //   path: 'about',
+  //   component: RecipeComponent,
+  //   pathMatch: 'full',
+  // },
   {
     path: '**',
     redirectTo: '',

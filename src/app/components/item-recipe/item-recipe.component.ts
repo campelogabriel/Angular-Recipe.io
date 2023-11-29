@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class ItemRecipeComponent {
   @Input() id: number;
+  @Input() image: string;
+  @Input() title: string;
 }

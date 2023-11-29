@@ -10,17 +10,18 @@
     </form>
   </div>
 
-  <div *ngIf="recipeArr.length > 0" class="container__ingredients--recipes">
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-    <app-item-recipe [id]="1"></app-item-recipe>
-  </div>
-
-  <div *ngIf="isLoading">
+  <div *ngIf="isLoading; else recipes">
     <img src="../../../assets/spinner.svg" alt="" />
   </div>
+
+  <ng-template #recipes>
+    <div class="container__ingredients--recipes">
+      <app-item-recipe
+        *ngFor="let recipe of recipeArr"
+        [id]="recipe.id"
+        [title]="recipe.title"
+        [image]="recipe.image"
+      ></app-item-recipe>
+    </div>
+  </ng-template>
 </div>

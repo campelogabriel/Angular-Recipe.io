@@ -1,4 +1,4 @@
-<div class="favorite">
+<div *ngIf="isLogin; else notLogin" class="favorite">
   <h1>⭐ Your favorites recipes ⭐</h1>
 
   <app-item-recipe [id]="1"></app-item-recipe>
@@ -13,3 +13,10 @@
   <app-item-recipe [id]="1"></app-item-recipe>
   <app-item-recipe [id]="1"></app-item-recipe>
 </div>
+
+<ng-template #notLogin>
+  <h1 class="notlogin">
+    😐 You're not logged. Please <a routerLink="/login">login here</a> for you
+    get access of your favorite recipes.
+  </h1>
+</ng-template>

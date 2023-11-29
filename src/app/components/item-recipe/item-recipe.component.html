@@ -1,12 +1,9 @@
 <div class="container__item">
   <div class="container__item--img">
-    <img
-      src="https://images.spoonacular.com/file/wximages/419357-312x231.png"
-      alt=""
-    />
+    <img src="{{ image }}" alt="" />
   </div>
   <a routerLink="/recipe/{{ id }}">
-    <p>Restaurant</p>
-    <h5>Name of Product</h5>
+    <!-- <p>Restaurant</p> -->
+    <h5>{{ title }}</h5>
   </a>
 </div>

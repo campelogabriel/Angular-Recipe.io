@@ -31,7 +31,8 @@
       outline: none;
 
       &:focus {
-        color: #222;
+        color: #000;
+        font-weight: 700;
         border-color: #ff9c76;
       }
     }

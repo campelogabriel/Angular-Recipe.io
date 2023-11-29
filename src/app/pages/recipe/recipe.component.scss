@@ -91,9 +91,23 @@
       display: flex;
       align-items: flex-start;
       gap: 0.8rem;
+      position: relative;
+      width: max-content;
+
+      &::before {
+        content: "";
+        position: absolute;
+        transform: translateX(-50%);
+        bottom: -10px;
+        left: 60%;
+        width: 60%;
+        height: 3px;
+        background-color: #fc4f08;
+      }
 
       span {
         font-size: 1.6rem;
+        align-self: center;
       }
     }
 
@@ -104,6 +118,7 @@
 
       h3 {
         font-size: 1.6rem;
+        text-transform: capitalize;
       }
 
       p {
@@ -111,4 +126,11 @@
       }
     }
   }
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
 }

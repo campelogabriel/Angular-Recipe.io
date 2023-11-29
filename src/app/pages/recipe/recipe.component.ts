@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { RecipesService } from 'src/app/services/recipes.service';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -8,14 +8,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecipeComponent implements OnInit {
   favorite: boolean = false;
-  id: number | null;
+  id: string | null;
   isLoading: boolean = false;
 
-  constructor(private router: ActivatedRoute) {
-    this.router.paramMap.subscribe(
-      (params) => (this.id = Number(params.get('id')))
-    );
-    console.log(this.id);
+  recipeObj: any;
+
+  constructor(
+    private router: ActivatedRoute,
+    private recipeService: RecipesService
+  ) {
+    this.router.paramMap.subscribe((params) => (this.id = params.get('id')));
+
+    this.isLoading = true;
+
+    this.recipeService.getRecipeId(this.id).subscribe((res) => {
+      this.isLoading = false;
+      this.recipeObj = res;
+      console.log(this.recipeObj);
+    });
   }
 
   ngOnInit(): void {

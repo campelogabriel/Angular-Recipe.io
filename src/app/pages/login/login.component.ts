@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { AuthorizationService } from 'src/app/services/authorization.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +18,12 @@ export class LoginComponent {
 
   formLogin: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthorizationService
+  ) {
+    document.title = 'Login Page - Recipe.io';
+
     this.formLogin = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', Validators.required],

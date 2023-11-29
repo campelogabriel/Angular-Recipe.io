@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
   selector: 'app-ingredients',
@@ -11,23 +12,31 @@ export class IngredientsComponent {
 
   formInput: FormGroup;
 
-  recipeArr: Array<number> = [];
+  recipeArr: Array<any> = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private serviceRecipe: RecipesService) {
+    document.title = 'Ingredients Page - Recipe.io';
     this.formInput = this.fb.group({
       ingredients: [''],
     });
   }
 
   onSearch() {
-    console.log(this.formInput.value.ingredients);
+    const values = this.formInput.value.ingredients
+      .split(',')
+      .map((v) => `+${v}`)
+      .join(',');
+
     this.formInput.reset();
 
     this.isLoading = true;
 
-    setTimeout(() => {
-      this.recipeArr = [0, 1, 2, 3, 4, 5, 6];
+    // apples,+flour,+sugar
+
+    this.serviceRecipe.getRecipeIngredients(values).subscribe((res) => {
       this.isLoading = false;
-    }, 1500);
+      this.recipeArr = res;
+      console.log(res);
+    });
   }
 }
