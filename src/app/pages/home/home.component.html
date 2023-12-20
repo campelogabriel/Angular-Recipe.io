@@ -1,15 +1,8 @@
 <div class="container__list">
   <h1>🍛 Amazing recipes for you 🍛</h1>
 
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
-
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
-
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
-  <app-item-recipe [id]="1"></app-item-recipe>
+  <app-selectors
+    (type)="selectType($event)"
+    style="grid-column: 1/-1"
+  ></app-selectors>
 </div>

@@ -11,7 +11,10 @@ import { ItemRecipeComponent } from './components/item-recipe/item-recipe.compon
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { IngredientsComponent } from './pages/ingredients/ingredients.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SelectorsComponent } from './components/selectors/selectors.component';
+import { TypeComponent } from './pages/type/type.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeComponent,
     FavoriteComponent,
     IngredientsComponent,
+    SelectorsComponent,
+    TypeComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

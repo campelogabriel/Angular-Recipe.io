@@ -1,43 +1,43 @@
-<div *ngIf="isLoading; else recipe">
-  <div class="spinner" *ngIf="isLoading">
-    <img src="../../../assets/spinner.svg" />
-  </div>
-</div>
-
-<ng-template #recipe>
-  <div class="recipe">
-    <div class="recipe__main">
-      <h4>{{ recipeObj.title }}</h4>
-      <img class="recipe__main--img" src="{{ recipeObj.image }}" />
-      <div class="recipe__main--info">
-        <p class="rating">
-          Servings: <span>{{ recipeObj.servings }}</span>
-        </p>
-
-        <img *ngIf="isLoading" src="../../../assets/spinner.svg" alt="" />
-
-        <button *ngIf="!isLoading" (click)="isFavorite()" class="favorite">
-          <p>Favorite</p>
-
-          <img *ngIf="!favorite" src="../../../assets/heartEmpty.png" />
-          <img *ngIf="favorite" src="../../../assets/heartFilled.png" />
-        </button>
-      </div>
-    </div>
-    <div class="ingredients">
-      <div class="ingredients__info">
-        <div
-          class="ingredients__sub"
-          *ngFor="let ing of recipeObj.extendedIngredients"
-        >
-          <h3>{{ ing.name }}</h3>
-          <p>Amount: {{ ing.amount }} {{ ing.unit }}</p>
-        </div>
-      </div>
-      <div class="ingredients__time">
-        <img src="../../../assets/clock.svg" alt="" />
-        <span>Prep Time: {{ recipeObj.readyInMinutes }} mins</span>
-      </div>
+<ng-template #loading>
+  <div *ngIf="isLoading">
+    <div class="spinner" *ngIf="isLoading">
+      <img src="../../../assets/spinner.svg" />
     </div>
   </div>
 </ng-template>
+
+<div *ngIf="recipeObj; else loading" class="recipe">
+  <div class="recipe__main">
+    <h4>{{ recipeObj.title }}</h4>
+    <img class="recipe__main--img" src="{{ recipeObj.image }}" />
+    <div class="recipe__main--info">
+      <p class="rating">
+        Servings: <span>{{ recipeObj.servings }}</span>
+      </p>
+
+      <img *ngIf="isLoading" src="../../../assets/spinner.svg" alt="" />
+
+      <button *ngIf="!isLoading" (click)="setFavorite()" class="favorite">
+        <p>Favorite</p>
+
+        <img *ngIf="!favorite" src="../../../assets/heartEmpty.png" />
+        <img *ngIf="favorite" src="../../../assets/heartFilled.png" />
+      </button>
+    </div>
+  </div>
+  <div class="ingredients">
+    <div class="ingredients__info">
+      <div
+        class="ingredients__sub"
+        *ngFor="let ing of recipeObj.extendedIngredients"
+      >
+        <h3>{{ ing.name }}</h3>
+        <p>Amount: {{ ing.amount }} {{ ing.unit }}</p>
+      </div>
+    </div>
+    <div class="ingredients__time">
+      <img src="../../../assets/clock.svg" alt="" />
+      <span>Prep Time: {{ recipeObj.readyInMinutes }} mins</span>
+    </div>
+  </div>
+</div>

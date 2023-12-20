@@ -71,7 +71,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1.6rem;
+
+    &__prof {
+      display: flex;
+      // justify-content: center;
+      gap: 0.8rem;
+      align-items: center;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &__logout {
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     a:link,
     a:visited {

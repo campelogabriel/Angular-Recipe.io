@@ -1,9 +1,10 @@
 .container__item {
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
   font-family: "Montserrat", sans-serif;
-  justify-self: center;
+  align-items: center;
 
   &--img {
     overflow: hidden;
@@ -11,6 +12,9 @@
     img {
       transition: all 0.4s;
       width: 200px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
     }
 
     img:hover {
@@ -33,9 +37,17 @@
       }
 
       h5 {
+        max-width: 300px;
         font-size: 1.6rem;
         margin: 0.8rem 0;
         color: #111;
+        text-align: center;
+        background-color: burlywood;
+        padding: 1.2rem 2rem;
+
+        &:hover {
+          background-color: rgb(230, 156, 59);
+        }
       }
     }
 

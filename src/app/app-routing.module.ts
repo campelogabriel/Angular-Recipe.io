@@ -6,6 +6,7 @@ import { RecipeComponent } from './pages/recipe/recipe.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { IngredientsComponent } from './pages/ingredients/ingredients.component';
 import { authorizationGuard } from './guards/authorization.guard';
+import { TypeComponent } from './pages/type/type.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'login',
+    path: 'type/:value',
+    component: TypeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth/login',
     title: 'Login Page',
     component: LoginComponent,
     pathMatch: 'full',

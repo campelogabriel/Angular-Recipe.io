@@ -1,23 +1,7 @@
 <div class="header">
   <div class="header__main">
     <img class="header__main--logo" src="assets/Logo.png" alt="Logo Recipe" />
-    <div class="header__main--user" *ngIf="!isLogged">
-      <div class="user--login">
-        <img src="assets/profileIcon.svg" alt="User Profile" />
-        <a routerLink="login">
-          <h3>Log in</h3>
-        </a>
-      </div>
-    </div>
-    <div class="header__main--user" *ngIf="isLogged">
-      <input type="text" placeholder="Search recipes..." />
-      <div class="user--login">
-        <img src="assets/profileIcon.svg" alt="User Profile" />
-        <a routerLink="edit">
-          <h3>{{ name }}</h3>
-        </a>
-      </div>
-    </div>
+    <div *ngIf="isAuthenticated$ | async; then logged; else notLogged"></div>
   </div>
   <div class="header__menu">
     <ul>
@@ -56,3 +40,32 @@
     </ul>
   </div>
 </div>
+
+<ng-template #notLogged>
+  <div class="header__main--user">
+    <div class="user--login">
+      <img src="assets/profileIcon.svg" alt="User Profile" />
+      <a routerLink="auth/login">
+        <h3>Log in</h3>
+      </a>
+    </div>
+  </div>
+</ng-template>
+<ng-template #logged>
+  <div class="header__main--user">
+    <div class="user--login">
+      <div class="user--login__prof">
+        <img src="assets/profileIcon.svg" alt="User Profile" />
+        <a routerLink="edit">
+          <h3>{{ name }}</h3>
+        </a>
+      </div>
+      <img
+        (click)="setLogout()"
+        class="user--login__logout"
+        src="../../../assets/logout.svg"
+        alt="Logout"
+      />
+    </div>
+  </div>
+</ng-template>

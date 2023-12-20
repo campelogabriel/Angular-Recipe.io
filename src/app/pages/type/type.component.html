@@ -1,0 +1,34 @@
+<div class="results">
+  <div *ngIf="recipes; then recipeObj; else loading"></div>
+  <div *ngIf="!isLoading" class="buttons">
+    <button
+      class="btn"
+      *ngIf="offSet > 0"
+      #btnPreviews
+      (click)="setPreviewsRecipes()"
+    >
+      <img src="../../../assets/arrow-left.svg" alt="" />
+    </button>
+    <button
+      class="btn"
+      *ngIf="offSet <= 900"
+      #btnMore
+      (click)="setMoreRecipes()"
+    >
+      <img src="../../../assets/arrow-right.svg" alt="" />
+    </button>
+  </div>
+</div>
+
+<ng-template #recipeObj>
+  <app-item-recipe
+    [id]="recipe.id"
+    [image]="recipe.image"
+    [title]="recipe.title"
+    *ngFor="let recipe of recipes"
+  ></app-item-recipe>
+</ng-template>
+
+<ng-template #loading>
+  <img class="spinner" src="../../../assets/spinner.svg" alt="" />
+</ng-template>

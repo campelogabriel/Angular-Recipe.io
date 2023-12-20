@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, tap } from 'rxjs';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -6,16 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  name: string | null;
-  isLogged: boolean;
+  name: string | null = 'Gabriel Campelo';
 
-  ngOnInit(): void {
-    this.checkLogin();
+  isAuthenticated$: Observable<boolean>;
+
+  constructor(private authService: AuthorizationService) {
+    this.isAuthenticated$ = this.authService.isAuthorizated();
+    this.isAuthenticated$.subscribe((a) => console.log(a));
   }
 
-  checkLogin() {
-    if (!localStorage.getItem('token')) return;
+  ngOnInit(): void {}
 
-    this.name = localStorage.getItem('name');
+  setLogout() {
+    this.authService.logOut();
+    window.location.href = '/auth/login';
   }
 }

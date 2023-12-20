@@ -1,0 +1,23 @@
+.selectors {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 50%;
+  gap: 3.2rem;
+  margin: 0 auto;
+
+  span {
+    padding: 1.2rem 2.4rem;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    transition: all 0.4s;
+    &:hover {
+      cursor: pointer;
+      background-color: #fc4f08;
+      color: #eee;
+    }
+  }
+}

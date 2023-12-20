@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-
 import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
@@ -17,6 +16,7 @@ export class LoginComponent {
   isLogin: boolean = false;
 
   formLogin: FormGroup;
+  formSignUp: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -25,15 +25,54 @@ export class LoginComponent {
     document.title = 'Login Page - Recipe.io';
 
     this.formLogin = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(4)]],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
+      email: [''],
+      password: [''],
     });
+
+    this.formSignUp = this.fb.group(
+      {
+        name: ['', [Validators.required, Validators.minLength(4)]],
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      { validator: this.matchingPasswords }
+    );
   }
 
-  onSubmit() {
-    console.log(this.formLogin);
+  matchingPasswords(group: FormGroup) {
+    if (group) {
+      const password1 = group.controls['password'].value;
+      const password2 = group.controls['confirmPassword'].value;
+
+      if (password1 == password2) return null;
+    }
+
+    return { matching: false };
+  }
+
+  onSubmitLogin() {
+    console.log(this.formLogin.value);
+
+    // this.authService.logIn(this.formLogin.value).subscribe(
+    //   (v) => {
+    //     console.log(v);
+    //     this.authService.generateLocalStorage(v);
+    //     window.location.href = '/';
+    //   },
+    //   (err) => console.log(err)
+    // );
+  }
+  onSubmitSignup() {
+    console.log(this.formSignUp.value);
+    // this.authService.signUp(this.formSignUp.value).subscribe(
+    //   (v) => {
+    //     console.log(v);
+    //     this.authService.generateLocalStorage(v);
+    //     window.location.href = '/';
+    //   },
+    //   (err) => console.log(err)
+    // );
   }
 
   setLogin() {
@@ -42,5 +81,9 @@ export class LoginComponent {
 
   setSignup() {
     this.isLogin = false;
+  }
+
+  seeChange(event) {
+    console.log(event);
   }
 }

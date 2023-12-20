@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 interface Account {
   id: number;
@@ -12,19 +14,22 @@ interface Account {
   styleUrls: ['./home.component.scss'],
   animations: [],
 })
-export class HomeComponent {
-  private SubjectTest$: BehaviorSubject<Account[]> = new BehaviorSubject<
-    Account[]
-  >([]);
-  constructor() {
+export class HomeComponent implements OnInit {
+  test$: Observable<any>;
+  constructor(
+    private router: Router,
+    private authService: AuthorizationService
+  ) {
     document.title = 'Home Page - Recipe.io';
+  }
 
-    this.SubjectTest$.next([
-      { id: 1, name: 'Gabriel' },
-      { id: 2, name: 'Sophia' },
-      { id: 3, name: 'Luciana' },
-    ]);
+  ngOnInit(): void {
+    this.test$ = this.authService.isAuthorizated();
+    this.test$.subscribe((res) => console.log(res));
+  }
 
-    this.SubjectTest$.subscribe((res) => console.log(res));
+  selectType(event) {
+    console.log(event);
+    this.router.navigate(['/type', event]);
   }
 }

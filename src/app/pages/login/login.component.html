@@ -1,4 +1,7 @@
-<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+<form
+  [formGroup]="isLogin ? formLogin : formSignUp"
+  (ngSubmit)="isLogin ? onSubmitLogin() : onSubmitSignup()"
+>
   <div class="choose">
     <a (click)="setLogin()">Login</a>
     |
@@ -14,14 +17,7 @@
   </ng-container>
 
   <label for="email">Email</label>
-  <input
-    required
-    name="email"
-    placeholder="Email"
-    type="email"
-    email
-    formControlName="email"
-  />
+  <input required name="email" placeholder="Email" formControlName="email" />
 
   <!-- <span class="errorMsg" *ngIf="email.errors?.['email']"
     >Please provide a valid email</span
@@ -51,7 +47,7 @@
   </ng-container>
 
   <div class="btn">
-    <button [disabled]="formLogin.valid" class="submit" type="submit">
+    <button class="submit" type="submit">
       {{ isLogin ? "Login" : "Submit" }}
     </button>
     <button class="back"><a routerLink="/">Voltar</a></button>
