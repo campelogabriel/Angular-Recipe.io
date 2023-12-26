@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SelectorsComponent } from './components/selectors/selectors.component';
 import { TypeComponent } from './pages/type/type.component';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { EditComponent } from './pages/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
     IngredientsComponent,
     SelectorsComponent,
     TypeComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

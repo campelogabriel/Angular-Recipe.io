@@ -10,7 +10,13 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  setToFavorite(obj: any): Observable<any> {
-    return this.http.post<any>(`${this.url}/updateRecipeFav`, obj);
+  setToFavorite(obj: any, type?: string): Observable<any> {
+    if (type == 'delete') {
+      console.log(obj);
+      return this.http.delete<any>(`${this.url}/recipeFavorite`, obj);
+    } else {
+      console.log(obj);
+      return this.http.post<any>(`${this.url}/recipeFavorite`, obj);
+    }
   }
 }

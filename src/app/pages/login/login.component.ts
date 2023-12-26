@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthorizationService
+    private authService: AuthorizationService,
+    private route: Router
   ) {
     document.title = 'Login Page - Recipe.io';
 
@@ -54,25 +56,21 @@ export class LoginComponent {
   onSubmitLogin() {
     console.log(this.formLogin.value);
 
-    // this.authService.logIn(this.formLogin.value).subscribe(
-    //   (v) => {
-    //     console.log(v);
-    //     this.authService.generateLocalStorage(v);
-    //     window.location.href = '/';
-    //   },
-    //   (err) => console.log(err)
-    // );
+    this.authService.logIn(this.formLogin.value).subscribe(
+      (v) => {
+        this.route.navigateByUrl('/');
+      },
+      (err) => console.log(err)
+    );
   }
   onSubmitSignup() {
     console.log(this.formSignUp.value);
-    // this.authService.signUp(this.formSignUp.value).subscribe(
-    //   (v) => {
-    //     console.log(v);
-    //     this.authService.generateLocalStorage(v);
-    //     window.location.href = '/';
-    //   },
-    //   (err) => console.log(err)
-    // );
+    this.authService.signUp(this.formSignUp.value).subscribe(
+      (v) => {
+        this.route.navigateByUrl('/');
+      },
+      (err) => console.log(err)
+    );
   }
 
   setLogin() {

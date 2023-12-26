@@ -30,6 +30,11 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
+    let favs = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (favs.favoriteRecipes.includes(Number(this.id))) {
+      this.favorite = true;
+    }
     this.recipeObj = this.recipeService
       .getRecipeId(this.id)
       .subscribe((res) => {
@@ -39,29 +44,35 @@ export class RecipeComponent implements OnInit {
 
     this.authService
       .isAuthorizated()
-      .subscribe((isLogin) => (this.isAuthorizated = isLogin));
+      .subscribe((isLogin) => (this.isAuthorizated = true));
   }
 
   setFavorite() {
-    if (this.isAuthorizated) this.route.navigate(['login']);
+    if (!this.isAuthorizated) {
+      this.route.navigate(['login']);
+      return;
+    }
 
-    return;
+    this.isLoading = true;
+    const obj = {
+      recipeId: Number(this.id),
+    };
 
-    // this.isLoading = true;
-    //   const obj = {
-    //     userId: localStorage.getItem('id'),
-    //     recipeId: this.id,
-    //   };
-    //   this.userService.setToFavorite(obj).subscribe(
-    //     (res) => {
-    //       this.isLoading = false;
-    //       console.log(res);
-    //     },
-    //     (err) => {
-    //       this.isLoading = false;
-    //       console.log(err);
-    //     }
-    //   );
-    // }
+    // console.log(obj);
+
+    this.userService
+      .setToFavorite(obj, this.favorite ? 'delete' : '')
+      .subscribe(
+        (res) => {
+          this.isLoading = false;
+          this.favorite = !this.favorite;
+
+          console.log(res);
+        },
+        (err) => {
+          this.isLoading = false;
+          console.log(err);
+        }
+      );
   }
 }

@@ -12,7 +12,7 @@ export class AuthorizationService {
 
   private subUser$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private subIsLogged$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    true
+    false
   );
   constructor(private http: HttpClient) {}
 
@@ -20,7 +20,9 @@ export class AuthorizationService {
     return this.http.post<any>(`${this.url}/login`, userLogIn).pipe(
       tap((u) => {
         this.subIsLogged$.next(true);
-        this.subUser$.next(u);
+        this.subUser$.next(u.user);
+        localStorage.setItem('token', u.token);
+        localStorage.setItem('user', JSON.stringify(u.user));
       })
     );
   }
@@ -28,9 +30,10 @@ export class AuthorizationService {
   signUp(userSignUp: Signup): Observable<any> {
     return this.http.post<any>(`${this.url}/signup`, userSignUp).pipe(
       tap((u) => {
-        console.log(u);
         this.subIsLogged$.next(true);
-        this.subUser$.next(u);
+        this.subUser$.next(u.user);
+        localStorage.setItem('token', u.token);
+        localStorage.setItem('user', JSON.stringify(u.user));
       })
     );
   }
@@ -42,6 +45,14 @@ export class AuthorizationService {
     return this.subIsLogged$.asObservable();
   }
   isAuthorizated(): Observable<any> {
+    if (localStorage.getItem('token') && localStorage.getItem('user')) {
+      this.subIsLogged$.next(true);
+      this.subUser$.next(localStorage.getItem('user'));
+    }
     return this.subIsLogged$.asObservable();
+  }
+
+  getUser(): Observable<any> {
+    return this.subUser$.asObservable();
   }
 }

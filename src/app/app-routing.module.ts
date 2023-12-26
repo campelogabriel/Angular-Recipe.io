@@ -7,6 +7,7 @@ import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { IngredientsComponent } from './pages/ingredients/ingredients.component';
 import { authorizationGuard } from './guards/authorization.guard';
 import { TypeComponent } from './pages/type/type.component';
+import { EditComponent } from './pages/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'ingredients',
     component: IngredientsComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'edit',
+    component: EditComponent,
     pathMatch: 'full',
   },
   // {

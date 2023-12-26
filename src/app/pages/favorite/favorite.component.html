@@ -1,5 +1,11 @@
 <div *ngIf="isLogged$ | async; else notLogin" class="favorite">
   <h1>⭐ Your favorites recipes ⭐</h1>
+  <app-item-recipe
+    [id]="recipe.id"
+    [image]="recipe.image"
+    [title]="recipe.title"
+    *ngFor="let recipe of recipes$ | async"
+  ></app-item-recipe>
 </div>
 
 <ng-template #notLogin>

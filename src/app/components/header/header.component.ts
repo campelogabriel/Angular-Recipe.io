@@ -8,16 +8,17 @@ import { AuthorizationService } from 'src/app/services/authorization.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  name: string | null = 'Gabriel Campelo';
-
+  name: string;
   isAuthenticated$: Observable<boolean>;
 
-  constructor(private authService: AuthorizationService) {
-    this.isAuthenticated$ = this.authService.isAuthorizated();
-    this.isAuthenticated$.subscribe((a) => console.log(a));
-  }
+  constructor(private authService: AuthorizationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAuthenticated$ = this.authService.isAuthorizated();
+    this.authService
+      .getUser()
+      .subscribe((res) => (this.name = JSON.parse(res).name));
+  }
 
   setLogout() {
     this.authService.logOut();
